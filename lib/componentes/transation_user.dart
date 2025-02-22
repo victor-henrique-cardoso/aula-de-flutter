@@ -42,7 +42,7 @@ class _TransationUserState extends State<TransationUser> {
     return Column(
       children: <Widget>[
         TransationList(transation: _trasactions),
-        TransationForme(),
+        TransationForme(_addTransaction),
       ],
     );
   }
