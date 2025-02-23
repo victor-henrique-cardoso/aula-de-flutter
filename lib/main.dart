@@ -27,19 +27,8 @@ class Myhomepage extends StatefulWidget {
 }
 
 class _MyhomepageState extends State<Myhomepage> {
-  final _trasactions = [
-    Transacao(
-      id: 't1',
-      title: 'Novo tênis de corrida',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transacao(
-      id: 't2',
-      title: 'Conta de luz',
-      value: 200,
-      date: DateTime.now(),
-    ),
+  final List<Transacao> _trasactions = [
+   
   ];
 
   _addTransaction(String title, double value) {
@@ -52,6 +41,7 @@ class _MyhomepageState extends State<Myhomepage> {
     setState(() {
       _trasactions.add(newTransaction);
     });
+    Navigator.of(context).pop();
   }
 
   _opentransactionFormodal(BuildContext context) {
@@ -65,13 +55,21 @@ class _MyhomepageState extends State<Myhomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        title: const Text("despesas pessoais"),
+        title: const Text("despesas pessoais",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.blue,
         actions: [
-          IconButton(onPressed: ()=>_opentransactionFormodal(context),
-          
-           icon: const Icon(Icons.add_box_outlined))
+          IconButton(
+              onPressed: () => _opentransactionFormodal(context),
+              icon: const Icon(Icons.add_box_outlined),
+              color: Colors.white,
+              )
         ],
       ),
       body: SingleChildScrollView(
@@ -85,12 +83,12 @@ class _MyhomepageState extends State<Myhomepage> {
                 elevation: 10,
               ),
             ),
-            TransationList(transation: _trasactions),
+            TransactionList( _trasactions),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()=>_opentransactionFormodal(context),
+        onPressed: () => _opentransactionFormodal(context),
         child: const Icon(Icons.add_box_outlined),
       ),
     );
